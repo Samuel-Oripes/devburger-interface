@@ -18,11 +18,12 @@ import {
 
 import { Button } from '../../components/Button';
 
-export function Login() {
+export function Register() {
 	const navigate = useNavigate();
 
 	const schema = yup
 		.object({
+			name: yup.string().required('O nome é obrigatório'),
 			email: yup
 				.string()
 				.email('Digite um e-mail válido')
@@ -31,6 +32,10 @@ export function Login() {
 				.string()
 				.min(6, 'A senha deve ter pelo menos 6 caracteres')
 				.required('Digite uma senha'),
+			confirmPassword: yup
+				.string()
+				.oneOf([yup.ref('password')], 'As senhas devem ser iguais')
+				.required('Confirme sua senha'),
 		})
 		.required();
 
@@ -44,8 +49,9 @@ export function Login() {
 	const onSubmit = async (data) => {
 		try {
 			const { status } = await api.post(
-				'/session',
+				'/users',
 				{
+					name: data.name,
 					email: data.email,
 					password: data.password,
 				},
@@ -56,11 +62,11 @@ export function Login() {
 
 			if (status === 200 || status === 201) {
 				setTimeout(() => {
-					navigate('/');
+					navigate('/login');
 				}, 1000);
-				toast.success('Seja Bem-Vindo(a)!');
-			} else if (status === 401) {
-				toast.error('Email ou senha incorretos');
+				toast.success('Conta criada com sucesso!');
+			} else if (status === 409) {
+				toast.error('Email já cadastrado!');
 			} else {
 				throw new Error();
 			}
@@ -75,18 +81,18 @@ export function Login() {
 				<img src={Logo} alt="logo-devburger" />
 			</LeftContainer>
 			<RightContainer>
-				<Title>
-					Olá, seja bem vindo ao <span>Dev Burguer!</span>
-					<br />
-					Acesse com seu <span>Login e senha.</span>
-				</Title>
+				<Title>Criar Conta</Title>
 				<Form onSubmit={handleSubmit(onSubmit)}>
+					<InputContainer>
+						<label for="input-nome">Nome</label>
+						<input type="text" id="input-nome" {...register('name')} />
+						<p>{errors.name?.message}</p>
+					</InputContainer>
 					<InputContainer>
 						<label for="input-email">Email</label>
 						<input type="email" id="input-email" {...register('email')} />
 						<p>{errors.email?.message}</p>
 					</InputContainer>
-
 					<InputContainer>
 						<label for="input-password">Senha</label>
 						<input
@@ -96,10 +102,19 @@ export function Login() {
 						/>
 						<p>{errors.password?.message}</p>
 					</InputContainer>
-					<Button type="submit">Entrar</Button>
+					<InputContainer>
+						<label for="input-confirm">Confirmar Senha</label>
+						<input
+							type="password"
+							id="input-confirm"
+							{...register('confirmPassword')}
+						/>
+						<p>{errors.confirmPassword?.message}</p>
+					</InputContainer>
+					<Button type="submit">Criar Conta</Button>
 				</Form>
 				<p>
-					Não possui conta? <Link to="/cadastro">Clique aqui.</Link>
+					Já possui conta? <Link to="/login">Clique aqui.</Link>
 				</p>
 			</RightContainer>
 		</Container>
