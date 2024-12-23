@@ -43,7 +43,10 @@ export function Login() {
 	});
 	const onSubmit = async (data) => {
 		try {
-			const { status } = await api.post(
+			const {
+				status,
+				data: { token },
+			} = await api.post(
 				'/session',
 				{
 					email: data.email,
@@ -64,6 +67,8 @@ export function Login() {
 			} else {
 				throw new Error();
 			}
+
+			localStorage.setItem('token', token);
 		} catch (error) {
 			toast.error('Algo deu errado! Tente novamente mais tarde.');
 		}
