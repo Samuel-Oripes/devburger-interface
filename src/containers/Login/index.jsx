@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import * as yup from 'yup';
+import { useUser } from '../../hooks/UserContext';
 import { api } from '../../services/api';
 
 import Logo from '../../assets/logo-login.png';
@@ -20,6 +21,7 @@ import { Button } from '../../components/Button';
 
 export function Login() {
 	const navigate = useNavigate();
+	const { putUserData } = useUser();
 
 	const schema = yup
 		.object({
@@ -43,10 +45,7 @@ export function Login() {
 	});
 	const onSubmit = async (data) => {
 		try {
-			const {
-				status,
-				data: { token },
-			} = await api.post(
+			const { status, data: userData } = await api.post(
 				'/session',
 				{
 					email: data.email,
@@ -68,7 +67,7 @@ export function Login() {
 				throw new Error();
 			}
 
-			localStorage.setItem('token', token);
+			putUserData(userData);
 		} catch (error) {
 			toast.error('Algo deu errado! Tente novamente mais tarde.');
 		}

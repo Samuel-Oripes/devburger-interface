@@ -35,13 +35,17 @@ export function OffersCarousel() {
 			breakpoint: { max: 3000, min: 1280 },
 			items: 4,
 		},
-		tablet: {
+		superLargeTablet: {
 			breakpoint: { max: 1280, min: 690 },
 			items: 3,
 		},
-		mobile: {
-			breakpoint: { max: 690, min: 0 },
+		tablet: {
+			breakpoint: { max: 690, min: 520 },
 			items: 2,
+		},
+		mobile: {
+			breakpoint: { max: 520, min: 0 },
+			items: 1,
 		},
 	};
 

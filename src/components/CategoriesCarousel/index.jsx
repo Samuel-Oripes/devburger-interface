@@ -30,14 +30,18 @@ export function CategoriesCarousel() {
 			breakpoint: { max: 3000, min: 1280 },
 			items: 4,
 		},
-		tablet: {
-			breakpoint: { max: 1280, min: 690 },
+		superLargeTablet: {
+			breakpoint: { max: 1280, min: 900 },
 			items: 3,
 		},
-		mobile: {
-			breakpoint: { max: 690, min: 0 },
+		tablet: {
+			breakpoint: { max: 900, min: 600 },
 			items: 2,
 		},
+		mobile: {
+			breakpoint: { max: 600, min: 0 },
+			items: 1,
+		}
 	};
 
 	return (
