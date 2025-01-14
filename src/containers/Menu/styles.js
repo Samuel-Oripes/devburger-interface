@@ -73,26 +73,3 @@ export const ProductsContainer = styled.div`
     max-width: 1280px;
     margin: 50px auto 0;
 `;
-
-export const ButtonReturn = styled(Link)`
-
-    width: 70px;
-    height: 40px;
-    border-radius: 5px;
-    background-color: #9758a6;
-    position: absolute;
-    bottom: 30px;
-    left: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &:hover {
-        background-color: #6f357c;
-    }
-
-    img{
-        width: 30px;
-        height: 30px;
-    }
-`;

@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import imageBack from '../../assets/imagem-voltar.png';
 import { CardProduct } from '../../components/CardProduct';
 import { api } from '../../services/api';
 import { formatPrice } from '../../utils/formatPrice';
 import {
 	Banner,
-	ButtonReturn,
 	CategoryButton,
 	CategoryMenu,
 	Container,
@@ -75,9 +73,6 @@ export function Menu() {
 					O MELHOR <br /> HAMBÚRGUER <br /> ESTÁ AQUI!
 					<span>Esse cardápio está irresistível!</span>
 				</h1>
-				<ButtonReturn to="/">
-					<img src={imageBack} alt="imagem-voltar" />
-				</ButtonReturn>
 			</Banner>
 			<CategoryMenu>
 				{categories.map((category) => (
