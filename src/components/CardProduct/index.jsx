@@ -3,6 +3,7 @@ import { useCart } from '../../hooks/CartContext';
 import { CartButton } from '../CardButton';
 import { CardImage, Container } from './styles';
 
+
 export function CardProduct({ product }) {
 	const { putProductInCart } = useCart();
 
