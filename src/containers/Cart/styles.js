@@ -32,7 +32,7 @@ export const Banner = styled.div`
 export const Tittle = styled.div`
     font-size: 32px;
     font-weight: 800;
-    padding-bottom: 12px;
+    padding: 12px 0;
     color: #61a120;
     text-align: center;
     position: relative;

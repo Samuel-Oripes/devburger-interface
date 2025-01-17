@@ -60,8 +60,6 @@ export const CartProvider = ({ children }) => {
 
 			setCartProducts(newCart);
 			updateLocalStorage(newCart);
-		} else {
-			deleteProduct(productId);
 		}
 	};
 
