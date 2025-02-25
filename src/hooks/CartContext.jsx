@@ -28,6 +28,7 @@ export const CartProvider = ({ children }) => {
 
 	const clearCart = () => {
 		updateLocalStorage([]);
+		setCartProducts([]);
 	};
 
 	const deleteProduct = (productId) => {
