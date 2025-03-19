@@ -6,7 +6,7 @@ import BannerHamburger from '../../assets/banner-menu.png';
 export const Container = styled.div`
     width: 100%;
     min-height: 100vh;
-    background-color: #f0f0f0;
+    background-color: ${(props) => props.theme.secondWhite};
 
     background: linear-gradient(
         rgba(255,255,255,0.6),
@@ -25,14 +25,14 @@ export const Banner = styled.div`
 
     background: url('${BannerHamburger}') no-repeat;
     background-position: center;
-    background-color: #1f1f1f;
+    background-color: ${(props) => props.theme.mainBlack};
     background-size: cover;
 
     h1 {
         font-family: 'Road Rage', sans-serif;
         font-size: 80px;
         line-height: 65px;
-        color: #FFFF;
+        color: ${(props) => props.theme.white}F;
         position: absolute;
         right: 20%;
         top: 30%;

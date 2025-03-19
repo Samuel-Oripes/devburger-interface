@@ -58,7 +58,11 @@ export function Login() {
 
 			if (status === 200 || status === 201) {
 				setTimeout(() => {
-					navigate('/');
+					if(userData?.admin) {
+						navigate('/admin/pedidos');
+					} else {
+						navigate('/');
+					}
 				}, 1000);
 				toast.success('Seja Bem-Vindo(a)!');
 			} else if (status === 401) {

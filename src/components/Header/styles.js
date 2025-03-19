@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    background-color: #1f1f1f;
+    background-color: ${(props) => props.theme.mainBlack};
+    /* background-color: #1f1f1f; */
     width: 100%;
     height: 72px;
     padding: 0 56px;
@@ -43,7 +44,7 @@ export const HeaderLink = styled(Link)`
     transition: color 200ms;
 
     &:hover {
-        color: #9758a6;
+        color: ${(props) => props.theme.purple};
     }
 `;
 export const Options = styled.div`
@@ -60,13 +61,13 @@ export const Profile = styled.div`
     font-size: 14px;
 
     p {
-        color: #FFFF;
+        color: ${(props) => props.theme.white}F;
         line-height: 90%;
         font-weight: 300;
 
         span {
             font-weight: 700;
-            color: #9758a6;
+            color: ${(props) => props.theme.purple};
         }
     }
 `;
@@ -77,7 +78,7 @@ export const LinkContainer = styled.div`
 `;
 
 export const Logout = styled.button`
-    color: #ff3205;
+    color: ${(props) => props.theme.red};
     text-decoration: none;
     font-weight: 700;
     background-color: transparent;

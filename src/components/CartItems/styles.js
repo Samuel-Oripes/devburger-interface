@@ -16,13 +16,13 @@ export const ButtonGroup = styled.div`
         justify-content: center;
         height: 30px;
         width: 30px;
-        color: #ffff;
+        color: ${(props) => props.theme.white}f;
         border-radius: 4px;
-        background-color: #9758a6;
+        background-color: ${(props) => props.theme.purple};
         border: none;
 
         &:hover {
-            background-color: #6f357c;
+            background-color: ${(props) => props.theme.secondDarkPurple};
         }
     }
 `;
