@@ -29,8 +29,9 @@ export const Title = styled.h2`
     }
 `;
 
-export const ContainerItems = styled.div`
-
+export const ContainerItems = styled.div.withConfig({
+	shouldForwardProp: (prop) => prop !== 'imageUrl',
+})`
     background: url('${(props) => props.imageUrl}');
     background-position: center;
     background-size: cover;

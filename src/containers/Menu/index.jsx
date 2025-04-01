@@ -61,7 +61,6 @@ export function Menu() {
 			const newFilteredProducts = products.filter(
 				(product) => product.category_id === activeCategory,
 			);
-
 			setFilteredProducts(newFilteredProducts);
 		}
 	}, [products, activeCategory]);
