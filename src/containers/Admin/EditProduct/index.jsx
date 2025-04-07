@@ -30,18 +30,35 @@ const schema = yup.object({
 	offer: yup.bool(),
 	file: yup
 		.mixed()
-		.test('required', 'Escolha um arquivo para continuar', (value) => {
-			return value && value.length > 0;
-		})
-		.test('fileSize', 'Carregue arquivo até 5mb', (value) => {
-			return value && value.length > 0 && value[0].size <= 50000;
-		})
-		.test('type', 'Carregue apenas imagens PNG ou JPEG', (value) => {
-			return (
-				value &&
-				value.length > 0 &&
-				(value[0].type === 'image/jpeg' || value[0].type === 'image/png')
-			);
+		.nullable() // Torna o campo explicitamente opcional
+		.test('fileValidation', '', function (value) {
+			// Se não tem arquivo, não precisa validar
+			if (!value || value.length === 0) {
+				return true;
+			}
+
+			// Validar tamanho (5MB em bytes)
+			const fiveMB = 5 * 1024 * 1024;
+			const isValidSize = value[0].size <= fiveMB;
+			if (!isValidSize) {
+				return this.createError({
+					path: 'file',
+					message: 'Carregue arquivo de até 5MB',
+				});
+			}
+
+			// Validar tipo
+			const isValidType =
+				value[0].type === 'image/jpeg' || value[0].type === 'image/png';
+
+			if (!isValidType) {
+				return this.createError({
+					path: 'file',
+					message: 'Carregue apenas imagens PNG ou JPEG',
+				});
+			}
+
+			return true;
 		}),
 });
 
@@ -79,7 +96,9 @@ export function EditProduct() {
 		productFormData.append('name', data.name);
 		productFormData.append('price', data.price * 100);
 		productFormData.append('category_id', data.category.id);
-		productFormData.append('file', data.file[0]);
+		if (data.file && data.file.length > 0) {
+			productFormData.append('file', data.file[0]);
+		}
 		productFormData.append('offer', data.offer);
 
 		await toast.promise(api.put(`/products/${product.id}`, productFormData), {

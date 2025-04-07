@@ -33,8 +33,9 @@ const schema = yup.object({
 		.test('required', 'Escolha um arquivo para continuar', (value) => {
 			return value && value.length > 0;
 		})
-		.test('fileSize', 'Carregue arquivo até 5mb', (value) => {
-			return value && value.length > 0 && value[0].size <= 50000;
+		.test('fileSize', 'Carregue arquivo até 5MB', (value) => {
+			const fiveMB = 5 * 1024 * 1024; // 5MB em bytes
+			return value && value.length > 0 && value[0].size <= fiveMB;
 		})
 		.test('type', 'Carregue apenas imagens PNG ou JPEG', (value) => {
 			return (
@@ -141,10 +142,7 @@ export function NewProduct() {
 				</InputGroup>
 				<InputGroup>
 					<ContainerCheckbox>
-						<input
-							type="checkbox"
-							{...register('offer')}
-						/>
+						<input type="checkbox" {...register('offer')} />
 						<Label>Produto em Oferta?</Label>
 					</ContainerCheckbox>
 				</InputGroup>
