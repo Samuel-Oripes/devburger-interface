@@ -1,6 +1,7 @@
 import { CategoriesCarousel, OffersCarousel } from '../../components';
 import { Banner, Container } from './styles';
 
+// Componente funcional principal da página Home
 export function Home() {
 	return (
 		<main>

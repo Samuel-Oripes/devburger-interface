@@ -3,6 +3,7 @@ import { CartItems, CartResume } from '../../components';
 import { Banner, Container, Content, Tittle } from './styles';
 
 export function Cart() {
+	// Componente funcional Cart - Responsável pela página de carrinho de compras
 	return (
 		<Container>
 			<Banner>
